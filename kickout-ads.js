@@ -1,4 +1,4 @@
-//    kickout-ads.js 1.0.0
+//    kickout-ads.js 1.0.2
 //    https://github.com/vkorotenko/kickout-ads
 //    (c) 2019-2019 Vladimir N. Korotenko developer
 //    kickout-ads may be freely distributed under the MIT license.
@@ -6,11 +6,12 @@
 var kickoutAds = (function () {
     if (window.document !== undefined) {
         window.document.addEventListener("DOMContentLoaded", function (event) {
-            var badSource = [
-                { url: "p.tlrtb.com\/ad\/base.js", name: "Tele2 / Rostelecom" },
-                { url: "evil.com\/ad\/base.js", name: "Evil site" }];
+            var key = 'kickout',
+                scripts = document.getElementsByTagName('script'),
+                badSource = [
+                    { url: "p.tlrtb.com\/ad\/base.js", name: "Tele2 / Rostelecom" },
+                    { url: "evil.com\/ad\/base.js", name: "Evil site" }];
 
-            var  scripts = document.getElementsByTagName('script');
             for (var ix in scripts) {
                 if (scripts.hasOwnProperty(ix)) {
                     var item = scripts[ix];
@@ -33,13 +34,25 @@ var kickoutAds = (function () {
              * @param {any} name - Имя  провайдера
              */
             function showInfo(url, name) {
-                console.log(info)
-                var body, info = document.createElement('div');
+                console.groupCollapsed('Detect intrusion');
+                console.warn('Url: ' + url);
+                console.warn('Name: ' + name);
+                console.groupEnd();
+                try {
+                    if (localStorage[key] !== undefined)
+                        return;
+                } catch (e) {
+                    console.warn(e);
+                }
+
+                var body = '',
+                    info = document.createElement('div');
+
                 info.classList.add("kickoffdiv");
-                body = 'Обнаружено изменение оригинального кода страницы со стороны провайдера: ' + name;
+                body += 'Обнаружено изменение оригинального кода страницы со стороны провайдера: ' + name;
                 body += '<br>Адрес скрипта: ' + url;
                 body += ' <a href="https://github.com/vkorotenko/kickout-ads">Как бороться?</a>';
-                body += '<br><button>Понимаю /закрыть и не показывать</button>';
+                body += '<br><button>Понимаю, закрыть и не показывать</button>';
 
                 info.innerHTML = body;
                 info.style.position = 'absolute';
@@ -49,8 +62,23 @@ var kickoutAds = (function () {
                 info.style.backgroundColor = 'lightgoldenrodyellow';
                 info.style.border = '1px solid lightgray';
                 document.body.appendChild(info);
+                var btn = document.querySelector('.kickoffdiv button');
+                if (btn !== undefined) {
+                    btn.onclick = closeinfo;
+                }
+            }
+            /**
+             * Закрывает окно и выставляет ключ не показывать в будущем. 
+             */
+            function closeinfo() {
+                try {
+                    localStorage[key] = true;
+                    document.querySelector('.kickoffdiv').style.display = 'none';
+                } catch (e) {
+                    console.warn(e);
+                }
             }
         });
     }
-    
+
 })();

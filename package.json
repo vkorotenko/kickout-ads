@@ -1,6 +1,6 @@
 {
   "name": "kickout-ads",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "kickout-ads test a interception from you provider and add message panel if this happend",
   "homepage": "https://github.com/vkorotenko/kickout-ads",
   "keywords": [

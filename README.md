@@ -1,5 +1,13 @@
 ﻿# kickout-ads
 
+## Версия
+ 1.0.2
+
+## Домашняя страница
+NPM - https://www.npmjs.com/package/kickout-ads
+ 
+GitHub - https://github.com/vkorotenko/kickout-ads
+
 ## Преамбула
 В ходе тестирования я обнаружил что провайдер добавляет свой рекламный блок (скрипт).
 Мне это крайне не понравилось, так-как ломало логику работы страниц, кроме этого это еще и попадает под определение статьи **«УК РФ Статья 273. Создание, использование и распространение вредоносных компьютерных программ»**. 
@@ -16,10 +24,25 @@
 ## Установка
    При помощи менеджера пакетов npm
 
-   **npm install kickout-ads --save**
+    npm install kickout-ads --save
    
-Прямой вставкой скрипта
+Прямой вставкой скрипта в тело страницы, лучше в конце.
 
+    <script src="https://cdn.jsdelivr.net/npm/kickout-ads@latest/kickout-ads.min.js"></script>
 
-## Настройка
+## Настройка внешнего вида сообщения
+Добавьте в страницу css стиль
+
+    .kickoffdiv {
+            background-color: lightgray!important;
+            border: solid 1px gray!important;
+            border-radius: 3px;
+        }
+    .kickoffdiv button {
+            margin-top: 1rem;
+            background-color: lightgray;
+            color: black;
+            border-radius: 3px;
+            border: 1px solid #a3a3f3
+        }
 

@@ -29,6 +29,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="kickout-ads.js" />
+    <Compile Include="kickout-ads.min.js" />
+    <Content Include=".gitignore" />
+    <Content Include="kickout-ads.min.js.map" />
+    <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tests\detect.html">
@@ -36,8 +40,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dist\" />
-    <Folder Include="src\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
