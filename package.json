@@ -1,0 +1,45 @@
+{
+  "name": "kickout-ads",
+  "version": "1.0.0",
+  "description": "kickout-ads test a interception from you provider and add message panel if this happend",
+  "homepage": "https://github.com/vkorotenko/kickout-ads",
+  "keywords": [
+    "provider",
+    "intrusion",
+    "client",
+    "browser",
+    "tele2",
+    "rostelecom"
+  ],
+  "main": "kickout-ads.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vkorotenko/kickout-ads.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vkorotenko/kickout-ads/issues"
+  },
+  "author": {
+    "name": "Vladimir N. Korotenko",
+    "email": "koroten@ya.ru",
+    "url": "https://vkorotenko.ru"
+  },
+  "devDependencies": {
+    "gzip-size-cli": "^1.0.0",
+    "pretty-bytes-cli": "^1.0.0",
+    "qunit-cli": "~0.2.0",
+    "qunit": "^2.6.0",
+    "uglify-js": "3.3.21"
+  },
+  "scripts": {
+    "minify": "uglifyjs kickout-ads.js -c \"evaluate=false\" --comments \"/    .*/\" -m",
+    "build": "npm run minify -- --source-map --source-map-url \" \" -o kickout-ads.min.js",
+    "weight": "npm run minify | gzip-size | pretty-bytes"
+  },
+  "license": "MIT",
+  "files": [
+    "kickout-ads.js",
+    "kickout-ads.min.js",
+    "kickout-ads.min.js.map"
+  ]
+}
